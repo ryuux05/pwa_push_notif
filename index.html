@@ -14,9 +14,6 @@
 
     <script>
         addEventListener('load', async() => {
-            let sw = await navigator.serviceWorker.register('./sw.js')
-            console.log(sw);
-
             if('serviceWorker' in navigator)
             {
                 let sw = await navigator.serviceWorker.getRegistration();
