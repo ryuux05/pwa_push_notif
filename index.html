@@ -37,17 +37,17 @@
             document.querySelector('#key').innerHTML = JSON.stringify(push);
             
             console.log("Sending...")
+            sendAddress(JSON.stringify(push))
        }
-       function sendAddress(endpoint, key) {
+       function sendAddress(endpoint) {
             console.log("Sending...")
             fetch('https://scrambleserver.onrender.com/push-notif',{
             method: 'POST',
             headers:{  
                     'Accept': 'application/json, text/plain, */*',
-                    'Content-Type': 'application/json'
-                
+                    'Content-Type': 'application/json'    
             },
-            body:JSON.stringify({endpoint: endpoint, key : key})
+            body:JSON.stringify({endpoint: endpoint})
             }).then("Subscription successful")
 }
 
