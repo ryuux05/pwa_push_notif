@@ -33,8 +33,24 @@
                 applicationServerKey: 'BHfCxidJ4Yv3wLLdmExQDYcJAoK1guYMhy7OSydRVMy4YwAvLNJ2HvvEXwBnoLTcRP5WuACnSnjemZfZRitzScA'
             })
             console.log(JSON.stringify(push));
+            console.log(push);
             document.querySelector('#key').innerHTML = JSON.stringify(push);
-        }
+            
+            console.log("Sending...")
+       }
+       function sendAddress(endpoint, key) {
+            console.log("Sending...")
+            fetch('https://scrambleserver.onrender.com/push-notif',{
+            method: 'POST',
+            headers:{  
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                
+            },
+            body:JSON.stringify({endpoint: endpoint, key : key})
+            }).then("Subscription successful")
+}
+
     </script>
 </body>
 </html>
