@@ -4,7 +4,7 @@ self.addEventListener('push', (event) => {
         icon: "images/example.png",
         vibrate: [100,50,100],
         data: {
-            dateOfArrival: date.now(),
+            dateOfArrival: Date.now(),
             primaryKey: '2'
         },
         actions: [
