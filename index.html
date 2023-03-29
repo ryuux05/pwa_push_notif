@@ -14,12 +14,15 @@
 
     <script>
         addEventListener('load', async() => {
+            let sw = await navigator.serviceWorker.register('./sw.js')
+            console.log(sw);
+
             if('serviceWorker' in navigator)
             {
-                registration = await navigator.serviceWorker.getRegistration();
-                if(!registration)
+                let sw = await navigator.serviceWorker.getRegistration();
+                if(!sw)
                 {
-                    registration = await navigator.serviceWorker.register('./sw.js');
+                    sw = await navigator.serviceWorker.register('./sw.js');
                 }
                 console.log(sw);
             }
