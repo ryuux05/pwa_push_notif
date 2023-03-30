@@ -7,7 +7,7 @@
     <link rel="manifest" href="/manifest.json">
 </head>
 <body>
-    <button id="install" onclick="install()">Install</button>
+    <button id="install">Install</button>
 
 
     <button id="subscribe" onclick="subscribe()">Subscribe</button>
@@ -16,6 +16,21 @@
     </div>
 
     <script>
+         let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            deferredPrompt = e;
+        });
+
+        const installApp = document.getElementById('install');
+        installApp.addEventListener('click', async () => {
+            if (deferredPrompt !== null) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    deferredPrompt = null;
+                }
+            }
+        });
     
         addEventListener('load', async() => {
             if('serviceWorker' in navigator)
@@ -42,23 +57,8 @@
             sendAddress(JSON.stringify(push))
        }
 
-       async function install() {
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            deferredPrompt = e;
-        });
-
-        const installApp = document.getElementById('installApp');
-        installApp.addEventListener('click', async () => {
-            if (deferredPrompt !== null) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                if (outcome === 'accepted') {
-                    deferredPrompt = null;
-                }
-        }
-    });
-       }
+       
+       
 
        function sendAddress(endpoint) {
             console.log("Sending...")
