@@ -16,13 +16,25 @@
     </div>
 
     <script>
-        let deferredPrompt;
+       let deferredPrompt;
 
+       addEventListener('load', async() => {
+            if('serviceWorker' in navigator)
+            {
+                let sw = await navigator.serviceWorker.getRegistration();
+                if(!sw)
+                {
+                    sw = await navigator.serviceWorker.register('./sw.js');
+                }
+                console.log(sw);
+            }
+        })
+        
         window.addEventListener('beforeinstallprompt', (event) => {
-            // Prevent Chrome 67 and earlier from automatically showing the prompt
-            event.preventDefault();
-            // Stash the event so it can be triggered later
-            deferredPrompt = event;
+        // Prevent Chrome 67 and earlier from automatically showing the prompt
+        event.preventDefault();
+        // Stash the event so it can be triggered later
+        deferredPrompt = event;
         });
         const installButton = document.querySelector('#install');
         // When the user clicks the install button, call deferredPrompt.prompt()
@@ -50,17 +62,7 @@
 
         });
 
-        addEventListener('load', async() => {
-            if('serviceWorker' in navigator)
-            {
-                let sw = await navigator.serviceWorker.getRegistration();
-                if(!sw)
-                {
-                    sw = await navigator.serviceWorker.register('./sw.js');
-                }
-                console.log(sw);
-            }
-        })
+       
 
         async function subscribe() {
             let sw = await navigator.serviceWorker.ready;
