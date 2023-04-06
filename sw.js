@@ -26,7 +26,7 @@ self.addEventListener('notificationclick', async function(event){
     }
     function sendAddress() {
         console.log("Pressed")
-        fetch('https://scrambleserver.onrender.com/push-notif',{
+        fetch('https://scrambleserver.onrender.com/push-notif/click',{
         method: 'POST',
         headers:{  
                 'Accept': 'application/json, text/plain, */*',
@@ -34,5 +34,6 @@ self.addEventListener('notificationclick', async function(event){
         },
         body:JSON.stringify()
         }).then("Notif clicked")
+    }
     clients.openWindow(event.action);
 });
