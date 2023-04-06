@@ -14,7 +14,7 @@
     <div>
         <p id="key">bla</p>
     </div>
-
+    
     <script>
        let deferredPrompt;
 
@@ -29,9 +29,9 @@
                 console.log(sw);
             }
         })
-        
+
         window.addEventListener('beforeinstallprompt', (event) => {
-        // Prevent Chrome 67 and earlier from automatically showing the prompt
+        // Prevent Chrome 67 and ea  ier from automatically showing the prompt
         event.preventDefault();
         // Stash the event so it can be triggered later
         deferredPrompt = event;
