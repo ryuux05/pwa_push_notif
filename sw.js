@@ -22,18 +22,19 @@ self.addEventListener('push', (event) => {
 self.addEventListener('notificationclick', async function(event){
     if(!event.action)
     {
+        console.log("Pressed");
+
+        fetch('https://scrambleserver.onrender.com/push-notif/click',{
+        method: 'POST',
+        headers:{  
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'    
+        },
+        body:JSON.stringify()
+        }).then("Notif clicked");
         return;
     }
-    console.log("Pressed");
-
-    fetch('https://scrambleserver.onrender.com/push-notif/click',{
-    method: 'POST',
-    headers:{  
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'    
-    },
-    body:JSON.stringify()
-    }).then("Notif clicked");
+  
     
     clients.openWindow(event.action);
 });
